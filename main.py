@@ -12,6 +12,7 @@ class PasswordManager:
         with open(path,'wb') as f:
             f.write(self.key)
 
+    
 
 
 pm=PasswordManager()
