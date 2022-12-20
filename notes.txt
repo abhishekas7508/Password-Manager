@@ -1,0 +1,21 @@
+pip install cryptography
+
+# this is a symmetric key encryption class to generate a key which will be used for 
+encrypting and decrypting the passwords
+from cryptography.fernet import Fernet
+
+
+create a class
+create a constructor with appropriate attributes
+create a method to generate key and store it into a file
+create a method to get the key that is stored in that file
+
+create a method to read password from the file and load into password dict
+create a method to write passwords present in the dictionary to the file
+             write
+password_dict----->password_file
+    ^                 | 
+    |_________________|
+            read and load into dict
+
+
