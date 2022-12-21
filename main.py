@@ -30,7 +30,12 @@ class PasswordManager:
 
         if self.password_file is not None:
             with open(self.password_file,"a+") as f:
-                encrypted = Fernet(self.key).encrypt(password.encode())
+                ## Instance the Fernet class with the key
+                fernet=Fernet(self.key)
+                #to encrypt the string string must
+                # be encoded to byte string before encryption
+                byteEncodedPassword=password.encode()
+                encrypted = fernet.encrypt(byteEncodedPassword)
                 f.write(username+":"+encrypted.decode()+"\n")
     
     def load_password_file(self,path):
@@ -39,7 +44,7 @@ class PasswordManager:
         with open(path,'r') as f:
             for line in f:
                 username,encrypted=line.split(':')
-                decrypted=Fernet(self.key).decrypt(encrypted.encode())
+                decrypted=Fernet(self.key).decrypt(encrypted).decode()
                 self.password_dict[username]=decrypted
     
     def get_password(self,username):
